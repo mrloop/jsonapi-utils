@@ -29,21 +29,6 @@ module JSONAPI::Utils
       @request.errors.blank? || jsonapi_render_errors(json: @request)
     end
 
-    # Override the JSONAPI::ActsAsResourceController#process_request method.
-    #
-    # It might be removed when the following line on JR is fixed:
-    # https://github.com/cerebris/jsonapi-resources/blob/release-0-8/lib/jsonapi/acts_as_resource_controller.rb#L62
-    #
-    # @return [String]
-    #
-    # @api public
-    def process_request
-      process_operations
-      render_results(@operation_results)
-    rescue => e
-      handle_exceptions(e)
-    end
-
     # Helper to get params for the main resource.
     #
     # @return [Hash]
